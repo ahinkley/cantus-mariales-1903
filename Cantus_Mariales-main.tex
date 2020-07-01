@@ -1,0 +1,871 @@
+% !TEX TS-program = LuaLaTeX+se
+\documentclass[10pt]{book}
+\usepackage{fontspec}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[autocompile]{gregoriotex}
+\usepackage[utf8]{luainputenc}
+\usepackage{ebgaramond}
+\usepackage{longtable}
+%Litany
+\usepackage{multicol}
+\usepackage[savepos]{zref}
+%\usepackage{libertine}
+\usepackage{multicol}
+\usepackage{rotating}
+
+\usepackage[margin=0.5in, paperwidth=6in, paperheight=9in]{geometry}
+
+\definecolor{myred}{HTML}{FF3333}
+\titleformat{\chapter}{\color{myred}\normalfont\huge\bfseries\filcenter}{\color{myred}}{1em}{}
+\titleformat{\section}{\color{myred}\normalfont\Large\bfseries\filcenter}{\color{myred}}{1em}{}
+\titleformat{\subsection}{\color{myred}\normalfont\large\bfseries\filcenter}{\color{myred}}{1em}{}
+
+\title{Cantus Mariales}
+\author{D. Josephus Pothier, O. S. B.}
+\date{23 January 1903}
+
+\fancypagestyle{plain}{%
+\fancyhead{}%
+\fancyfoot[C]{-- \thepage  --}%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}}
+
+\pagestyle{plain}
+
+\newfontfamily\myfont{Linux Libertine O}
+
+
+%Litany code
+\columnseprule=0.4pt
+
+\makeatletter  
+\newcounter{score}
+\newcounter{tabstop}[score]
+\newcommand{\grealign}{%
+	\@bsphack%
+	\ifgre@boxing\else%
+		\kern\gre@dimen@begindifference%
+		\stepcounter{tabstop}%
+		\expandafter\zsavepos{stop-\thescore-\thetabstop}%
+		\kern-\gre@dimen@begindifference%
+	\fi%
+	\@esphack%
+}
+
+\newcommand{\setstops}{%
+  \gdef\nstabbing@stops{%
+    \hspace*{-\oddsidemargin}\hspace{-1in}%
+    \hspace*{\zposx{stop-\thescore-1} sp}\=%
+  }%
+  \count@=\@ne
+  \loop\ifnum\count@<\value{tabstop}%
+    \begingroup\edef\x{\endgroup
+      \noexpand\g@addto@macro\noexpand\nstabbing@stops{%
+        \noexpand\hspace{-\noexpand\zposx{stop-\thescore-\the\count@} sp}%
+        \noexpand\hspace{\noexpand\zposx{stop-\thescore-\the\numexpr\count@+1} sp}\noexpand\=%
+      }%
+    }\x
+    \advance\count@\@ne
+  \repeat
+  \nstabbing@stops\kill
+}
+\makeatother
+
+\newenvironment{nstabbing}
+  {\setlength{\topsep}{0pt}%
+   \setlength{\partopsep}{0pt}%
+   \tabbing%
+   \setstops}
+  {\endtabbing\stepcounter{score}}
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+Transcribed from a facsimile published by Prof. Peter Kwasniewski.
+Amazon links:
+www.amazon.com/Cantus-Mariales-Marian-Plainchants-Ancient/dp/153273963X
+www.amazon.com/Cantus-Mariales-plain-cover-Latin/dp/1532745397
+
+\newcommand{\ts}[1]{\begin{flushright}(\textbf{\myfont T.} {\it #1})\end{flushright}}
+\newcommand{\ms}[1]{\begin{flushright}(\textbf{\myfont M.} {\it #1})\end{flushright}}
+\newcommand{\tms}[1]{\begin{flushright}(\textbf{\myfont T. M.} {\it #1})\end{flushright}}
+\newcommand{\tmss}[2]{\begin{flushright}(\textbf{\myfont T.} {\it #1;} \textbf{\myfont M.} {\it #1})\end{flushright}}
+
+\newfontface\berry{Berry Rotunda}
+\grechangedim{annotationraise}{-8pt}{scalable}
+\grechangestyle{initial}{\berry\color{red}\fontsize{24}{24}\selectfont}
+
+\grechangestaffsize{13}
+
+\include{title}
+\include{preface}
+
+\pagenumbering{arabic}
+\chapter{I\\Salutatio angelica}
+\begin{center}\textcolor{red}{ANTIPHONA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/an_salutatio_angelica.gabc}
+
+\chapter{II\\Memorare}
+\begin{center}\textcolor{red}{ANTIPHONA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/an_memorare.gabc}
+
+\chapter{III\\Inviolata}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/pr_inviolata.gabc}
+\ts{XII. s. Tropi mediis verbis {\bf \Rbar. Gaude Maria} intersiti.}
+
+\chapter{IV\\O Virgo pulcherrima}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/pr_o_virgo_pulcherrima.gabc}
+\ts{Brit. Musæi, 7. A. VI. Ed. R. P. Ragey, Hymn. B. M. V., p. 29.}
+
+\chapter{V\\Tota pulchra es}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.1.gabc}
+%\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.2.gabc}
+%\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.3.gabc}
+%\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.4.gabc}
+%\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.5.gabc}
+%\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_tota_pulchra_es.6.gabc}
+
+\ts{Centones e locis variis sacræ liturgiæ.}
+
+\chapter{VI\\Omnis expertem}
+\begin{center}\textcolor{red}{HYMNUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/hy_omnis_expertem.gabc}
+\input{verses/hy_omnis_expertem}
+
+\tmss{ex Officio Apparitionis B. M. V.}{ad noc concinnata.}
+
+\chapter{VII\\Terrena cuncta jubilent}
+\begin{center}\textcolor{red}{HYMNUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/hy_terrena_cuncta_jubilent.gabc}
+\input{verses/hy_terrena_cuncta_jubilent}
+\include{gabc/hy_terrena_cuncta_jubilent}
+\ts{S. Petri Damiani, Cardinalis. Ed. Tomasi, p. 385.}
+
+\chapter{VIII\\Eva virum}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/rh_eva_virum.1.gabc}
+
+%\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/rh_eva_virum.2.gabc}
+
+%\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/rh_eva_virum.3.gabc}
+\ts{1\textsuperscript{a} stropha. Bibl. nat. Paris.. Cod. 1139. Ed. Raillard. -- 2\textsuperscript{a} et 3\textsuperscript{a} str. novæ.}
+\ms{Cod. 1139.}
+
+\chapter{IX\\Jesu Fili summi Patris}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/se_jesu_fili_summi_patris.gabc}
+\tms{Bibl. Sangall.. Cod. 546.}
+
+\chapter{X\\O res admirabilis}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{3.}}}
+\gregorioscore{gabc/se_o_res_admirabilis.gabc}
+\ts{Bibl. nat. Paris.. Cod. 1339.}
+
+\chapter{XI\\In natali Domini}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/ca_in_natali_domini.gabc}
+\tms{Ed. Wackernagel. {\rm Kirchenlied.} 1. 203.}
+
+\chapter{XII\\Resonet in laudibus}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_resonet_in_laudibus.gabc}
+\input{verses/ca_resonet_in_laudibus}
+
+\chapter{XIII\\Clemens et benigna}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{2.}}}
+\gregorioscore{gabc/pr_clemens_et_benigna.gabc}
+\tms{Bibl. Sangall.. Cod. 546, additio \Rbar ad libitum.}
+
+\chapter{XIV\\Stabat Mater speciosa}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/se_stabat_mater_speciosa.gabc}
+\ts{Bibl. nat. Paris.. Cod. 7785, lat. Ed. Ozanam, {\rm Poétes francisc..} Eæ tamen fuerunt merito eliminatæ strophæ quæ non videntur genuinæ, vel certe pares non habent in typica seq. {\rm Stabat mater dolorosa}, ejusdem, ut creditur, auctoris. Nonnulli etiam versus mutati sunt in alios melioris rhythmi vel sensus aptioris.}
+
+\chapter{XV\\Ave Mater}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/se_ave_mater.gabc}
+\ts{Ed. Mone, 373}
+
+\chapter{XVI\\Ave plena gratiæ}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/pr_ave_plena_gratiae.gabc}
+\ts{Ed. Mone, 527.}
+
+\chapter{XVII\\Post partum Virgo}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/pr_post_partum_virgo.gabc}
+\tms{Bibl. Sangall. Cod. 546. -- Bibl. nat. Paris.. Cod. 17311, lat.}
+
+\chapter{XVIII\\Salve mira creatura}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/ca_salve_mira_creatura.gabc}
+\input{verses/ca_salve_mira_creatura}
+\ts{Partim de variis locis selectus; partim de novo conditus.}
+
+\chapter{XIX\\Flos virginum}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/ca_flos_virginum.gabc}
+\input{verses/ca_flos_virginum}
+\ts{Versus selecti ex Seq. {\rm Jubilus Virginis..} Ed. R. P. Ragey, {\rm Hymn. B. M. V.,} p. 185.}
+
+\chapter{XX\\Sancta Maria}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/ca_sancta_maria.gabc}
+\input{verses/ca_sancta_maria}
+\ms{Conductus {\rm Astra tenenti}, in Ludo Danielis. Cod. Bellovac., in Bibl. Paduana. Ed. Danjou, {\rm Revue}, t. IV. v. 65.}
+
+\chapter{XXI\\Gloria Sanctorum}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/rh_gloria_sanctorum.gabc}
+\ts{Ed. D. Gallus Morel, O. S. B.}
+
+\chapter{XXII\\Ave Virgo speciei}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{}}}
+\gregorioscore{gabc/ca_ave_virgo_speciei.gabc}
+\input{verses/ca_ave_virgo_speciei}
+\ts{E variis locis partim depromptus, partim de novo concinnatus.}
+\ms{Cf. Conductum {\rm Regis vasa deferentes}, in Ludo Danielis, ex Cod. Bellovac..}
+
+\chapter{XXIII\\O Maria, vitæ via}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_o_maria_vitae_via.gabc}
+\input{verses/ca_o_maria_vitae_via}
+\ts{Marial. {\sc VII}, 28-36. Ed. R. P. Ragey.}
+
+\chapter{XXIV\\Salve mater misericordiæ}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/ca_salve_mater_misericordiae.gabc}
+\ts{Strophæ selectæ e prolixo poemate quod gratia devotionis quidam Carmelita in usus suorum edidit.}
+
+\chapter{XXV\\Ave maris stella, vera mellis stilla}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/rh_ave_maris_stella_vera_mellis_stilla.gabc}
+\input{verses/rh_ave_maris_stella_vera_mellis_stilla}
+\ts{Brit. Mus. 7. A. VI. Ed. R. P. Ragey. {\rm Hymn. B. M. V.} 387.}
+
+\chapter{XXVI\\Ave lumen}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/se_ave_lumen.gabc}
+\ts{Bibl. nat. Paris.. Cod. 1063. Ex abbatia Arremarensi O. S. B.}
+
+\chapter{XXVII\\Jesse proles, quibus doles}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/se_jesse_proles_quibus_doles.gabc}
+\ts{{\sc XIII\textsuperscript{0}} s. Bibl. Sangall. Cod. 383.}
+\ms{Ad instar cantus de Prophetis Christi, {\rm Omnes gentes congaudentes.} Bibl. nat Paris.. Cod. 1139. {\sc XI\textsuperscript{0}} s. Edidit Ed. de Coussemaker, {\rm Histoire de l'harmonie au moyen \^age}, pl. {\sc XVIII-XXIII.}}
+
+\chapter{XXVIII\\O Maria, mater pia}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/se_o_maria_mater_pia.gabc}
+\ts{Ed. Mone, 606.}
+
+\chapter{XXIX\\Ave vena veniæ}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/rh_ave_vena_veniae.gabc}
+\input{verses/rh_ave_vena_veniae}
+\ts{Bibl. nat. Paris.. Cod. 3639. Ed. R. P. Ragey, {\rm Hymn. B. M. V.}, p. 193.}
+
+\chapter{XXX\\O tu spes mea, Maria}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/rh_o_tu_spes_mea_maria.gabc}
+\input{verses/rh_o_tu_spes_mea_maria}
+\ts{Canticum {\rm O bella mia speranza}, auctore S. Alphonso de Ligorio.}
+\ms{Eodem S. Doctore.}
+
+\chapter{XXXI\\O Maria, Dei cella}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/pr_o_maria_dei_cella.gabc}
+\ts{Ad melodiam e variis locis concinnatus.}
+\ms{Ex Ludo Danielis, Conductus, {\rm Jubilemus Regi nostro.}}
+
+\chapter{XXXII\\Voce jucunditatis}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{3.}}}
+\gregorioscore{gabc/se_voce_jucunditatis.gabc}
+\ts{Petri Venerabilis, abb. Cluniac.. Patr. lat. CXLIX.}
+
+\chapter{XXXIII\\Concordi lætitia}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/rh_concordi_laetitia.gabc}
+\ts{Ed. Felix. Clement. Seq. 86.}
+\ms{Prosa {\rm Orientis partibus}, {\sc XIII\textsuperscript{0}} s.}
+
+\chapter{XXXIV\\Tota Regis filiæ}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/se_tota_regis_filiae.gabc}
+\ts{In Missa propria Cordis B. M. V. a S. R. C. approbata pro Societate S. Sulpitii, item SS. Cord.}
+
+\chapter{XXXV\\Gaude, Virgo, quæ de cælis}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/ca_gaude_virgo_quae_de_caelis.gabc}
+\input{verses/ca_gaude_virgo_quae_de_caelis}
+\ts{Ed. Daniel, V, 136, cum hoc titulo {\rm B. Thomæ episcopo} [Cantuar.] {\rm per Mariam revelata}.}
+\ms{nova, addito \Rbar. Alleluia.}
+
+\chapter{XXXVI\\Visne Maria}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/pr_visne_maria.gabc}
+\ts{Canticum S. Alphonsi de italico sermone in latinum versum a R. P. Franc. Xav. Reuss, Congr. SS. Redemptoris.}
+\ms{nova.}
+
+\chapter{XXXVII\\Sicut pratum picturatur}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/se_sicut_pratum_picturatur.gabc}
+\ts{{\sc XII\textsuperscript{0}} s. Bibl. nat. Paris. Cod. 3156. Edidit D. Pitra, {\rm Spicilegium Solesmense}, III.}
+
+\chapter{XXXVIII\\Hodiernæ lux diei}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/se_hodiernae_lux_diei.gabc}
+\tms{Ex usu per medium œvum communiter recepto.}
+
+\chapter{XXXIX\\Alma Virgo}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/ca_alma_virgo.gabc}
+\input{verses/ca_alma_virgo}
+\ts{Ed. Mone, 431. Additæ sunt strophæ 2 et 6.}
+\ms{nova.}
+
+\chapter{XL\\Salve mundi Domina}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/pr_salve_mundi_domina.gabc}
+\ts{Ed. Mone, 322.}
+
+\chapter{XLI\\Virgo clemens}
+\begin{center}\textcolor{red}{RHYTHMUS}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/rh_virgo_clemens.gabc}
+\ts{Bibl. Monac. Clm., 5539. Ed. Mone, 495.}
+\ms{nova.}
+
+\chapter{XLII\\Ave, Virgo nobilis}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/se_ave_virgo_nobilis.gabc}
+\ts{Ed. Mone, 620.}
+\ms{Cfr. {\rm Alleluia, \Vbar. Domine in virtute.} Dom. V. post. Pent.}
+
+\chapter{XLIII\\Ave maris stella, clarum jubar}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/pr_ave_maris_stella_clarum_jubar.gabc}
+\ts{{\rm Parnassus Marianus}. Ed. R. P. Ragey, {\rm Hymn. B. M. V.}, p. 413.}
+
+\chapter{XLIV\\O Sophia}
+\begin{center}\textcolor{red}{PROSA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{}}}
+\gregorioscore{gabc/pr_o_sophia.gabc}
+\ts{Cfr. {\rm Mariale} S. Anselmi. Hym. IV, str. 21-26.}
+\ms{{\sc XV\textsuperscript{0}} s. Exercitam quidem et in suo saltem genere pulchram artem hæc redolet cantilena, simul vero præ singulari sonorum scala quamdam asperitatem. Modum autem musicum prænotare consulto omittimus, cum nullus sit e consuetis ad quem ea facile posset adscribi.}
+
+\chapter{XLV\\O Maria, Mater pia, Mater}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{3.}}}
+\gregorioscore{gabc/ca_o_maria_mater_pia_mater.gabc}
+\ts{Partim de variis locis selectus, partim de novo concinnatus.}
+\ms{nova.}
+
+\chapter{XLVI\\Isti sunt agni novelli}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/ca_isti_sunt_agni_novelli.gabc}
+\input{verses/ca_isti_sunt_agni_novelli}
+\ts{Strophæ 1\textsuperscript{a}, 2\textsuperscript{a}, 3\textsuperscript{a}, 8\textsuperscript{a}, 9\textsuperscript{a}, 10\textsuperscript{a}, 11\textsuperscript{a}, 12\textsuperscript{a}, ex {\rm Mariali} S. Anselmi.\\
+Str. 4\textsuperscript{a}, 5\textsuperscript{a}, 6\textsuperscript{a}, 7\textsuperscript{a} novæ. \Rbar. ex sacra liturgia.}
+
+\chapter{XLVII\\O beata Mater}
+\begin{center}\textcolor{red}{CANTICUM}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/ca_o_beata_mater.gabc}
+\ts{E sacra liturgia.}
+\ms{Cant. {\rm Benedictus es.} Sabb. IV. Temp.}
+
+\chapter{XLVIII\\Imperatrix Angelorum}
+\begin{center}\textcolor{red}{SUPPLICATIO}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/su_imperatrix_angelorum.gabc}
+\input{verses/su_imperatrix_angelorum}
+\ts{Ed. Mone, 585.}
+
+\chapter{XLIX\\Ave Virgo virginum}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/se_ave_virgo_virginum.gabc}
+\ts{Ed. Mone, 368.}
+
+\chapter{L\\O mira caritas}
+\begin{center}\textcolor{red}{SEQUENTIA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{5.}}}
+\gregorioscore{gabc/se_o_mira_caritas.gabc}
+\ts{Ex Cod. Monac. [Munich]. Clm. 5539. Ed. Mone, 365.}
+\ms{Ex eodem Codice.}
+
+\part{Appendix}
+\chapter{I\\Magnificat}
+\begin{center}\textcolor{red}{ANTIPHONA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{6.}}}
+\gregorioscore{gabc/an_magnificat.gabc}
+\tms{Versus alleluiaticus in Missa Purissimi Cordis B. M. V.,\\per modum Antiphonæ decantandus.}
+
+\chapter{II\\Vox turturis}
+\begin{center}\textcolor{red}{ANTIPHONA}\end{center}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/an_vox_turturis.gabc}
+\tms{Versus alleluiaticus in Missa Apparitionis B. M. V. Immaculatæ,\\per modum Antiphonæ concinendus.}
+
+\chapter{III\\Ad Virginem Dei Matrem\\Piæ salutationes}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/ad_virginem_dei_matrem__piae_salutationes.gabc}
+\ts{Usu receptus.}
+\ms{nova.}
+
+\chapter{IV\\Coronula Stellarum duodecim\\B. M. V.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\input{gabc/coronula_stellarum_duodecim__b_m_v}
+\ts{B. Ludovici Mariæ Grignon de Montfort. Ed. in Periodico cui titulus: Le R\`egne de Jésus par Marie. Apr. 1900.}
+\ms{nova.}
+
+\chapter{V\\Corona sacratissimi Rosarii}
+%\hrule
+\begin{center}
+\textcolor{myred}{ANTIPHONÆ ANTE SINGULAS DECADES DECANTANDÆ}
+\end{center}
+%\hrule
+\section{I\\Mysteria gaudiosa}
+
+\subsection{1. Annuntiatio.}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/annuntiatio.gabc}
+
+\subsection{2. \\Visitatio.}
+\greannotation{\small \textcolor{red}{\textbf{2.}}}
+\gregorioscore{gabc/visitatio.gabc}
+
+\subsection{3. Nativitas Domini.}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/nativitas_domini.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/nativitas_domini__alia_ant.gabc}
+
+\subsection{4. Purificatio B. M. V.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/purificatio_b_m_v.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/purificatio_b_m_v__alia_ant.gabc}
+
+\subsection{5. Inventio Jesu in templo.}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/inventio_jesu_in_templo.gabc}
+
+\section{II\\Mysteria dolorosa}
+\subsection{1. Agonia in horto.}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/agonia_in_horto.gabc}
+
+\subsection{2. Flagellatio.}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/flagellatio.gabc}
+
+\subsection{3. Impositio coronæ spineæ.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/impositio_coronae_spineae.gabc}
+
+\subsection{4. Bajulatio Crucis.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/bajulatio_crucis.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/bajulatio_crucis__alia_ant.gabc}
+
+\subsection{5. Crucifixio.}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/crucifixio.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{3.}}}
+\gregorioscore{gabc/crucifixio__alia_ant.gabc}
+
+\section{III\\Mysteria gloriosa}
+\subsection{1. Resurrectio.}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/resurrectio.gabc}
+
+\subsection{2. Ascensio.}
+\greannotation{\small \textcolor{red}{\textbf{4.}}}
+\gregorioscore{gabc/ascensio.gabc}
+
+\subsection{3. Pentecostes.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/pentecostes.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/pentecostes__alia_ant.gabc}
+
+\subsection{4. Assumptio B. M. V.}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/assumptio_b_m_v.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{1.}}}
+\gregorioscore{gabc/assumptio_b_m_v__alia_ant.gabc}
+
+\subsection{5. Impositio diadematis B. M. V.}
+\greannotation{\small \textcolor{red}{\textbf{8.}}}
+\gregorioscore{gabc/impositio_diadematis_b_m_v.gabc}
+\vspace{10pt}
+{\it Alia antiphona:}\\
+\vspace{5pt}
+\greannotation{\small \textcolor{red}{\textbf{7.}}}
+\gregorioscore{gabc/impositio_diadematis_b_m_v__alia_ant.gabc}
+
+%\hrule
+
+\chapter{VI\\Litaniæ Laurentanæ\\B. M. V.}
+%\input{gabc/litaniae_laurentanae.tex}
+%
+
+\gresetinitiallines{0}
+
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-01.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+\noindent
+\begin{minipage}{4in}
+\gregorioscore{gabc/litany/litany-02.gabc}
+%\gabcsnippet{ Pater de <i>cæ</i><b>lis</b> Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp-\>tor \>{\it mun}-\>{\bf di} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>Spí-\>ri-\>tus \>\>{\it San}-\>{\bf cte} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>San-\>cta \>Tríni-\>tas \>{\it u}-\>{\bf nus} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.
+\end{nstabbing}
+\end{minipage}
+
+
+\noindent
+\begin{minipage}{2.5in}
+\gregorioscore{gabc/litany/litany-03.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis. }
+\end{minipage}
+\par
+\noindent
+\begin{minipage}{3.0in}
+\gregorioscore{gabc/litany/litany-04.gabc}
+%\gabcsnippet{ Sancta Dei Génitrix,  ora pro nobis. }
+\begin{nstabbing}
+\>San\>cta \>Vir-\>go \>vír\>gi\>num, \>o-\>ra \>pro \>nobis. 
+\end{nstabbing}
+\end{minipage}
+\par
+\noindent
+\begin{minipage}{2.5in}
+\gregorioscore{gabc/litany/litany-05.gabc}
+%\gabcsnippet{ Mater Christi,  ora pro nobis. }
+\end{minipage}
+
+\begin{multicols}{2}
+\noindent
+Mater divínæ grátiæ,\\
+Mater puríssima,\hfill \begin{rotate}{270}ora pro nobis.\end{rotate} \hspace{0.2in}\\
+Mater castíssima,\\
+Mater invioláta,\\
+Mater intemeráta,\\
+Mater amábilis,\\
+Mater admirábilis,\\
+Mater Creatóris,\\
+Mater Salvatóris,\\
+Virgo prudentíssima,\\
+Virgo veneránda,\\
+Virgo prædicánda,\\
+Virgo potens,\\
+Virgo clemens,\hfill \begin{rotate}{270}ora pro nobis.\end{rotate} \hspace{0.2in}\\
+Virgo fidélis,\\
+Spéculum justítiæ,\\
+Sedes sapiéntiæ,\\
+Causa nostræ lætítiæ,\\
+Vas spirituále,\\
+Vas honorábile,\\
+Vas insígne devotiónis,\\
+Rosa mystica,\\
+Turris Davídica,\hfill \begin{rotate}{270}ora pro nobis.\end{rotate} \hspace{0.2in}\\
+Turris ebúrnea,\\
+Domus áurea,\\
+Fœderis arca,\\
+Jánua cæli,\\
+Stella matutína,\\
+Salus infirmórum,\\
+Refúgium peccatórum,\\
+Consolátrix afflictórum,\\
+Auxílium Christianórum,\\
+Regína Angelórum,\\
+Regína Patriarchárum,\\
+Regína Prophetárum,\hfill \begin{rotate}{270}\\ora pro nobis.\end{rotate} \hspace{0.1in}\\
+Regína Apostolórum,\\
+Regína Mártyrum,\\
+Regína Confessórum,\\
+Regína Vírginum,\\
+Regína Sanctórum ómnium,\\
+Regína sine labe origináli concépta,\\
+Regína sacratíssimi Rosárii,
+\end{multicols}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-06.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\subsection{Ejusdem toni cantus solemnior. }
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-07.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+
+\noindent
+\begin{minipage}{4in}
+\gregorioscore{gabc/litany/litany-08.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp\>tor \>{\it mun}-\>{\bf di} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>Spí\>ri-\>tus \>\>{\it San}-\>{\bf cte} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>San\>cta \>Tríni-\>tas \>{\it u}-\>{\bf nus} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.
+\end{nstabbing}
+\end{minipage}
+
+\noindent
+\begin{minipage}{4in}
+\gregorioscore{gabc/litany/litany-09.gabc}
+%\gabcsnippet{ Sancta María  ora pro nobis.  Sancta Dei Génitrix, etc.}
+\end{minipage}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-10.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\vspace{10pt}
+{\it Ad variandum cantum potest ad libitum intermisceri tonus supra positus cum alio, ut sequitur:}
+\gregorioscore{gabc/litany/litany-11.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix,  ora pro nobis.  Sancta Virgo Vírginum,  ora pro nobis.  Mater Christi, etc.}
+
+\vspace{10pt}
+{\it Et sic prosequitur, semper alternando.}
+
+\subsection{Cantus item festivus.}
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-12.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-13.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp-\>tor \>{\it mun}-\>{\bf di} \>De-\>us, \>mi-\>se-\>ré-\>re \>no- bis.\\
+\>Spí\>ri-\>tus \>\>{\it San}-\>{\bf cte} \>De-\>us, \>mi-\>se-\>ré-\>re \>no- bis.\\
+\>San\>cta \>Tríni-\>tas \>{\it u}-\>{\bf nus} \>De-\>us, \>mi-\>se-\>ré-\>re \>no- bis.
+\end{nstabbing}
+\end{minipage}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-14.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix, etc.}
+\end{minipage}
+\gresetlastline{ragged}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-15.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\vspace{10pt}
+{\it Cantus variatur ad libitum, ut sequitur:}
+\gregorioscore{gabc/litany/litany-16.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix,  ora pro nobis.  Sancta Virgo Vírginum,  ora pro nobis.  Mater Christi,  ora pro nobis, etc.}
+
+\vspace{10pt}
+{\it Possunt etiam invocationes ad libitum decantari omnes uno ac eodem modo quo supra:} Sancta Dei genitrix, ora pro nobis.
+
+\section{Cantus simplices.}
+\subsection{1. Cantus Armoricus.}
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-17.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-18.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp-\>tor \>mun-\>di \>{\it De}-\>{\bf us,} \>mi-\>se-\>ré-\>re \>nobis.\\
+\>Spí-\>ri-\>tus \>\>San-\>cte \>{\it De}-\>{\bf us,} \>mi-\>se-\>ré-\>re \>nobis.\\
+\>San-\>cta \>Tríni-\>tas \>u-\>nus \>{\it De}-\>{\bf us,} \>mi-\>se-\>ré-\>re \>nobis.
+\end{nstabbing}
+\end{minipage}
+\gregorioscore{gabc/litany/litany-19.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix, etc.}
+
+\noindent
+\begin{minipage}{5in}
+\gregorioscore{gabc/litany/litany-20.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\subsection{2. Cantus Normannicus.}
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-21.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-22.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp-\>tor \>{\it mun}-\>{\bf di} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>Spí-\>ri-\>tus \>\>{\it San}-\>{\bf cte} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>San-\>cta \>Tríni-\>tas \>{\it u}-\>{\bf nus} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.
+\end{nstabbing}
+\end{minipage}
+\gregorioscore{gabc/litany/litany-23.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix,  ora pro nobis.  Sancta Virgo Vírginum,  ora pro nobis.  Mater Christi,  ora pro nobis, etc.}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-24.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\subsection{3. Cantus novus.}
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-25.gabc}
+%\gabcsnippet{ Kyrie eléison. <i>ij.</i> Christe eléison. <i>ij.</i> Kyrie eléison. <i>ij.</i> Christe audi nos. <i>ij.</i> Christe exáudi nos. <i>ij.</i>}
+\gresetlastline{justified}
+\vspace{2pt}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-26.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  miserére nobis. }
+\begin{nstabbing}
+\>Fi-\>li \>Redémp-\>tor \>mun-\>{\it di} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>Spí-\>ri-\>tus \>\>San-\>{\it cte} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.\\
+\>San-\>cta \>Tríni-\>tas \>u-\>{\it nus} \>De-\>us, \>mi-\>se-\>ré-\>re \>nobis.
+\end{nstabbing}
+\end{minipage}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-27.gabc}
+%\gabcsnippet{ Sancta María,  ora pro nobis.  Sancta Dei Génitrix, etc.}
+\end{minipage}
+
+\noindent
+\begin{minipage}{4.5in}
+\gregorioscore{gabc/litany/litany-28.gabc}
+%\gabcsnippet{ Agnus Dei,  qui tollis peccáta mundi,  parce nobis Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  exáudi nos Dómine. 
+%Agnus Dei,  qui tollis peccáta mundi,  miserére nobis. }
+\end{minipage}
+
+\section{Cantus in forma breviori}
+\subsection{I}
+\gresetlastline{ragged}
+\gregorioscore{gabc/litany/litany-29.gabc}
+%\gabcsnippet{ Kyrie eléison,  Christe eléison,  Christe audi nos,  Christe exáudi nos.  Pater de cælis Deus,  Fili Redémptor mundi Deus,  Spíritus Sancte Deus,  miserére nobis.  Sancta María,  Sancta Dei Génitrix,  Sancta Virgo vírginum,  ora pro nobis.  Mater Christi,  Mater divínæ grátiæ,  Mater purissima,  ora.  Mater castíssima,  Mater invioláta,  Mater intemeráta,  ora.  Mater amábilis,  Mater admirábilis,  Mater Creatóris,  ora.  Mater Salvatóris,  Virgo prudentíssima,  Virgo veneránda,  ora.  Virgo prædicánda,  Virgo potens,  Virgo clemens,  ora.  Virgo fidélis,  Spéculum justítiæ,  Sedes sapiéntiæ,  ora.  Causa nostræ lætítiæ,  Vas spirituále,  Vas honorábile,  ora.  Vas insígne devotiónis,  Rosa mystica,  Turris Davídica,  ora.  Turris ebúrnea,  Domus áurea,  Fœderis arca,  ora.  Jánua cæli,  Stella matutína,  Salus infirmórum,  ora.  Refúgium peccatórum,  Consolátrix afflictórum,  Auxílium christianórum,  ora.  Regína Angelórum,  Regína Patriarchárum,  Regína Prophetárum,  ora.  Regína Apostolórum,  Regína Mártyrum,  Regína Confessórum,  ora.  Regína Vírginum,  Regína Sanctórum ómnium,  Regína sine labe origináli concépta,  ora.  Regína Sacratíssimi Rosárii,  ora. }
+\gregorioscore{gabc/litany/litany-30.gabc}
+%\gabcsnippet{ Agnus Dei, qui tollis peccáta mundi,  parce nobis Dómine,  exáudi nos, Dómine,  miserére nobis. }
+
+\subsection{II}
+\gregorioscore{gabc/litany/litany-31.gabc}
+%\gabcsnippet{ Kyrie eléison,  Christe eléison,  Christe audi nos,  Christe exáudi nos. }
+\gregorioscore{gabc/litany/litany-32.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  Fili Redémptor mundi Deus,  Spíritus Sancte Deus,  miserére nobis.  Sancta María,  Sancta Dei Génitrix,  Sancta Virgo vírginum,  ora pro nobis.  Mater Christi, etc.}
+\gregorioscore{gabc/litany/litany-33.gabc}
+%\gabcsnippet{ Agnus Dei, qui tollis peccáta mundi,  parce nobis Dómine,  exáudi nos Dómine,  miserére nobis. }
+
+\subsection{III}
+\gregorioscore{gabc/litany/litany-34.gabc}
+%\gabcsnippet{ Kyrie eléison,  Christe eléison,  Christe audi nos,  Christe exáudi nos. }
+\gregorioscore{gabc/litany/litany-35.gabc}
+%\gabcsnippet{ Pater de cælis Deus,  Fili Redémptor mundi Deus,  Spíritus Sancte Deus,  miserére nobis.  Sancta María,  Sancta Dei Génitrix,  Sancta Virgo vírginum,  ora pro nobis.  Mater Christi, etc.}
+\gregorioscore{gabc/litany/litany-36.gabc}
+%\gabcsnippet{ Agnus Dei, qui tollis peccáta mundi,  parce nobis Dómine,  exáudi nos Dómine,  miserére nobis. }
+
+\end{document}
